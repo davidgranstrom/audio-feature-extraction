@@ -18,13 +18,14 @@ The output is stored as a json document written to a file in your current direct
 Usage
 -----
 
-    usage: audio-feature-extraction.py [-h] [-i INPUT] [-o OUTPUT]
+    usage: audio-feature-extraction.py [-h] [-o OUTPUT] input
+
+    positional arguments:
+    input                 Directory with audio files to be analyzed (read is
+                            recursive)
 
     optional arguments:
     -h, --help            show this help message and exit
-    -i INPUT, --input INPUT
-                            Directory with audio files to be analyzed (read is
-                            recursive)
     -o OUTPUT, --output OUTPUT
                             Optional path to json output (defaults to current
                             directory)

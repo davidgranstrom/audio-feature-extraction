@@ -14,7 +14,7 @@ import numpy as np
 ###############
 parser = argparse.ArgumentParser()
 
-parser.add_argument('-i', '--input',
+parser.add_argument('input',
                     help='Directory with audio files to be analyzed (read is recursive)')
 
 parser.add_argument('-o', '--output',
