@@ -32,6 +32,7 @@ def analyze(files, output):
     # Store the sampling rate as `sr`
     y, sr = librosa.load(file)
 
+    duration = librosa.core.get_duration(y=y, sr=sr)
     # centroid
     spectral_centroid = librosa.feature.spectral_centroid(y=y, sr=sr)
     # onsets
@@ -40,6 +41,7 @@ def analyze(files, output):
 
     json_data = {
       'path': file,
+      'duration': duration,
       'spectral_min': spectral_centroid.min(),
       'spectral_max': spectral_centroid.max(),
       'spectral_mean': spectral_centroid.mean(),
