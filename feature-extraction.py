@@ -126,12 +126,10 @@ if os.path.isfile(json_path):
   print('Overwrite?')
   print('y/n?')
   overwrite = parse_input()
+  if overwrite:
+      write_file(json_path, json_output)
+  else:
+      print('File was not overwritten')
 else:
   write_file(json_path, json_output)
-  sys.exit()
-
-if overwrite:
-  write_file(json_path, json_output)
-else:
-  print('File was not overwritten')
 
