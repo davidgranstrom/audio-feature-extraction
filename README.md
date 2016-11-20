@@ -1,7 +1,7 @@
 Audio feature extraction
 ========================
 
-**Note: This is a work in progress**
+**Note:** This is a work in progress
 
 Requirements
 ------------
@@ -13,6 +13,7 @@ Description
 -----------
 
 Tool for extracting spectral features (MFCC, bandwidth, centroid) from a given set of audio files.
+The output is stored as a json document written to a file in your current directory if no output path is specified.
 
 Usage
 -----
