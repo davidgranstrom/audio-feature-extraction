@@ -32,10 +32,11 @@ signal.signal(signal.SIGINT, signal_handler)
 ##############
 #  Analysis  #
 ##############
-def analyze(files, output):
+def analyze(files):
   """
   Audio feature extraction
   """
+  output = []
 
   for file in files:
     # Load the audio as a waveform `y`
@@ -67,6 +68,8 @@ def analyze(files, output):
     print('Analyzing file:', file)
     output.append(json_data)
 
+  return output;
+
 if not args.input:
   print('No input path specified, see --help')
   sys.exit()
@@ -81,10 +84,8 @@ if os.path.isdir(audio_file_path):
 else:
   audio_files = [ audio_file_path ]
 
-# store the analysis output
-output = []
 # do the analysis
-analyze(audio_files, output)
+result = analyze(audio_files)
 
 #########
 #  I/O  #
@@ -123,7 +124,7 @@ else:
 
 # json document structure
 json_output = {
-  'files': output,
+  'files': result,
   'timestamp': datetime.datetime.now().isoformat(),
   'version': 'v0.1'
 }
