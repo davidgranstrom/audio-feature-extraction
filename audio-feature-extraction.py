@@ -126,7 +126,7 @@ else:
 json_output = {
   'files': result,
   'timestamp': datetime.datetime.now().isoformat(),
-  'version': 'v0.1'
+  'version': '0.1'
 }
 
 if os.path.isfile(json_path):
