@@ -6,6 +6,7 @@ import os.path
 import argparse
 import librosa
 import numpy as np
+from datetime import datetime
 
 # Setup argument parser
 parser = argparse.ArgumentParser()
@@ -86,8 +87,17 @@ def write_file(path, data):
 
   print('Wrote output to', path)
 
-json_path = os.path.abspath('./output.json')
-json_output = { 'files': output }
+if args.output:
+    json_path = os.path.expanduser(args.output)
+else:
+    json_path = os.path.abspath('./output.json')
+
+# json document structure
+json_output = {
+    'files': output,
+    'timestamp': datetime.now().isoformat(),
+    'version': 'v0.1'
+}
 
 if os.path.isfile(json_path):
   print('File {0} exists'.format(json_path))
