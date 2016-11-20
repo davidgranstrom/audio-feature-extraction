@@ -5,9 +5,9 @@ import sys
 import signal
 import os.path
 import argparse
+import datetime
 import librosa
 import numpy as np
-from datetime import datetime
 
 ###############
 #  Arguments  #
@@ -89,7 +89,6 @@ analyze(audio_files, output)
 #########
 #  I/O  #
 #########
-
 def parse_input():
   """
   Parse user input to determine if we should overwrite the existing file
@@ -125,7 +124,7 @@ else:
 # json document structure
 json_output = {
   'files': output,
-  'timestamp': datetime.now().isoformat(),
+  'timestamp': datetime.datetime.now().isoformat(),
   'version': 'v0.1'
 }
 
