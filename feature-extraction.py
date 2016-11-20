@@ -8,9 +8,11 @@ import librosa
 import numpy as np
 from datetime import datetime
 
-# Setup argument parser
+###############
+#  Arguments  #
+###############
 parser = argparse.ArgumentParser()
-# args
+
 parser.add_argument('-i', '--input',
                     help='Directory with audio files to be analyzed (read is recursive)')
 
@@ -19,6 +21,9 @@ parser.add_argument('-o', '--output',
 
 args = parser.parse_args()
 
+##############
+#  Analysis  #
+##############
 def analyze(files, output):
   "extract features from file list input"
 
@@ -59,6 +64,10 @@ audio_files = librosa.util.find_files(audio_file_path,
 output = []
 # do the analysis
 analyze(audio_files, output)
+
+#########
+#  I/O  #
+#########
 
 def parse_input():
   """
