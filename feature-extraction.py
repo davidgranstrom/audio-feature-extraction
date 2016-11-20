@@ -60,8 +60,16 @@ if not args.input:
 # Get paths for audio files
 valid_extensions = ['aac', 'au', 'flac', 'm4a', 'mp3', 'ogg', 'wav', 'aif']
 audio_file_path = os.path.expanduser(args.input)
-audio_files = librosa.util.find_files(audio_file_path,
-                                      ext=valid_extensions)
+
+if os.path.isdir(audio_file_path):
+    audio_files = librosa.util.find_files(audio_file_path,
+                                        ext=valid_extensions)
+else:
+    audio_files = [ audio_file_path ]
+
+print(audio_files)
+print(audio_file_path)
+
 # store the analysis output
 output = []
 # do the analysis
