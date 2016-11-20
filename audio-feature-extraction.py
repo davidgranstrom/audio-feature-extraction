@@ -37,7 +37,7 @@ def analyze(files, output):
   Audio feature extraction
   """
 
-  for file in audio_files:
+  for file in files:
     # Load the audio as a waveform `y`
     # Store the sampling rate as `sr`
     y, sr = librosa.load(file)
