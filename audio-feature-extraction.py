@@ -130,8 +130,7 @@ json_output = {
 
 if os.path.isfile(json_path):
   print('File {0} exists'.format(json_path))
-  print('Overwrite?')
-  print('y/n?')
+  print('Overwrite?\n y/n')
   overwrite = parse_input()
   if overwrite:
     write_file(json_path, json_output)
