@@ -32,4 +32,4 @@ Usage
 
 Example
 
-    ./audio-feature-extraction.py -i ~/audio/test-files -o ~/audio/test-files/features.json
+    ./audio-feature-extraction.py ~/audio/test-files -o ~/audio/test-files/features.json
