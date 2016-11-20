@@ -73,9 +73,6 @@ if os.path.isdir(audio_file_path):
 else:
     audio_files = [ audio_file_path ]
 
-print(audio_files)
-print(audio_file_path)
-
 # store the analysis output
 output = []
 # do the analysis
