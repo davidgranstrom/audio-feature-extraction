@@ -33,7 +33,9 @@ signal.signal(signal.SIGINT, signal_handler)
 #  Analysis  #
 ##############
 def analyze(files, output):
-  "extract features from file list input"
+  """
+  Audio feature extraction
+  """
 
   for file in audio_files:
     # Load the audio as a waveform `y`
