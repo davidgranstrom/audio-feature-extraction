@@ -42,20 +42,26 @@ def analyze(files, output):
     # Store the sampling rate as `sr`
     y, sr = librosa.load(file)
 
+    # spectral centroid
+    spectral_centroids = librosa.feature.spectral_centroid(y=y, sr=sr)
+    # spectral bandwidth
+    spectral_bandwidths = librosa.feature.spectral_bandwidth(y=y, sr=sr)
+    # mel-frequency cepstral coefficients
+    S = librosa.feature.melspectrogram(y=y, sr=sr, n_mels=128)
+    mfccs = librosa.feature.spectral.mfcc(y=y, sr=sr, S=librosa.core.logamplitude(S), n_mfcc=12)
+    # duration
     duration = librosa.core.get_duration(y=y, sr=sr)
-    # centroid
-    spectral_centroid = librosa.feature.spectral_centroid(y=y, sr=sr)
-    # onsets
-    onset_frames = librosa.onset.onset_detect(y=y, sr=sr)
-    onset_frames = librosa.core.frames_to_time(onset_frames[:20], sr=sr)
 
     json_data = {
       'path': file,
       'duration': duration,
-      'spectral_min': spectral_centroid.min(),
-      'spectral_max': spectral_centroid.max(),
-      'spectral_mean': spectral_centroid.mean(),
-      'onsets': onset_frames.tolist()
+      'spectral_centroids': spectral_centroids[0].tolist(),
+      'spectral_bandwidths': spectral_bandwidths[0].tolist(),
+      'spectral_centroid_min': spectral_centroids.min(),
+      'spectral_centroid_max': spectral_centroids.max(),
+      'spectral_centroid_mean': spectral_centroids.mean(),
+      'mfccs': mfccs.tolist(),
+      'mfcc_mean': mfccs.mean(),
     }
 
     print('Analyzing file:', file)
