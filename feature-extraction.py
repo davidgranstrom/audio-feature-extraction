@@ -1,9 +1,11 @@
-from __future__ import print_function
-import numpy as np
+#!/usr/bin/env python3
+
 import json
-import librosa
-import os.path
 import sys
+import os.path
+import argparse
+import librosa
+import numpy as np
 
 def analyze(files, output):
   "extract features from file list input"
@@ -78,7 +80,7 @@ if os.path.isfile(json_path):
   overwrite = parse_input()
 else:
   write_file(json_path, json_output)
-  quit()
+  sys.exit()
 
 if overwrite:
   write_file(json_path, json_output)
