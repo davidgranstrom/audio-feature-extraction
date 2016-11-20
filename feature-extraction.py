@@ -23,8 +23,8 @@ parser.add_argument('-o', '--output',
 args = parser.parse_args()
 
 def signal_handler(signum, frame):
-    print('Interrupted')
-    sys.exit(0)
+  print('Interrupted')
+  sys.exit(0)
 
 # Handle C-c
 signal.signal(signal.SIGINT, signal_handler)
@@ -60,18 +60,18 @@ def analyze(files, output):
     output.append(json_data)
 
 if not args.input:
-    print('No input path specified, see --help')
-    sys.exit()
+  print('No input path specified, see --help')
+  sys.exit()
 
 # Get paths for audio files
 valid_extensions = ['aac', 'au', 'flac', 'm4a', 'mp3', 'ogg', 'wav', 'aif']
 audio_file_path = os.path.expanduser(args.input)
 
 if os.path.isdir(audio_file_path):
-    audio_files = librosa.util.find_files(audio_file_path,
+  audio_files = librosa.util.find_files(audio_file_path,
                                         ext=valid_extensions)
 else:
-    audio_files = [ audio_file_path ]
+  audio_files = [ audio_file_path ]
 
 # store the analysis output
 output = []
@@ -110,15 +110,15 @@ def write_file(path, data):
   print('Wrote output to', path)
 
 if args.output:
-    json_path = os.path.expanduser(args.output)
+  json_path = os.path.expanduser(args.output)
 else:
-    json_path = os.path.abspath('./output.json')
+  json_path = os.path.abspath('./output.json')
 
 # json document structure
 json_output = {
-    'files': output,
-    'timestamp': datetime.now().isoformat(),
-    'version': 'v0.1'
+  'files': output,
+  'timestamp': datetime.now().isoformat(),
+  'version': 'v0.1'
 }
 
 if os.path.isfile(json_path):
@@ -127,9 +127,9 @@ if os.path.isfile(json_path):
   print('y/n?')
   overwrite = parse_input()
   if overwrite:
-      write_file(json_path, json_output)
+    write_file(json_path, json_output)
   else:
-      print('File was not overwritten')
+    print('File was not overwritten')
 else:
   write_file(json_path, json_output)
 
