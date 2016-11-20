@@ -7,6 +7,17 @@ import argparse
 import librosa
 import numpy as np
 
+# Setup argument parser
+parser = argparse.ArgumentParser()
+# args
+parser.add_argument('-i', '--input',
+                    help='Directory with audio files to be analyzed (read is recursive)')
+
+parser.add_argument('-o', '--output',
+                    help='Optional path to json output (defaults to current directory)')
+
+args = parser.parse_args()
+
 def analyze(files, output):
   "extract features from file list input"
 
@@ -34,11 +45,16 @@ def analyze(files, output):
 
   return;
 
+if not args.input:
+    print('No input path specified, see --help')
+    sys.exit()
+
 # Get paths for audio files
-audio_file_path = os.path.expanduser('~/audio/speech')
+valid_extensions = ['aac', 'au', 'flac', 'm4a', 'mp3', 'ogg', 'wav', 'aif']
+audio_file_path = os.path.expanduser(args.input)
 audio_files = librosa.util.find_files(audio_file_path,
-                                      ext=['aac', 'au', 'flac', 'm4a', 'mp3', 'ogg', 'wav', 'aif'])
-# store output
+                                      ext=valid_extensions)
+# store the analysis output
 output = []
 # do the analysis
 analyze(audio_files, output)
