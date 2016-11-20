@@ -92,7 +92,7 @@ def write_file(path, data):
   Write data to file
   """
   with open(path, 'w') as file:
-    json.dump(data, file)
+    json.dump(data, file, separators=(',', ':'))
 
   print('Wrote output to', path)
 
