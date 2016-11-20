@@ -2,6 +2,7 @@
 
 import json
 import sys
+import signal
 import os.path
 import argparse
 import librosa
@@ -20,6 +21,13 @@ parser.add_argument('-o', '--output',
                     help='Optional path to json output (defaults to current directory)')
 
 args = parser.parse_args()
+
+def signal_handler(signum, frame):
+    print('Interrupted')
+    sys.exit(0)
+
+# Handle C-c
+signal.signal(signal.SIGINT, signal_handler)
 
 ##############
 #  Analysis  #
