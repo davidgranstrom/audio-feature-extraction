@@ -51,8 +51,6 @@ def analyze(files, output):
     print('Analyzing file:', file)
     output.append(json_data)
 
-  return;
-
 if not args.input:
     print('No input path specified, see --help')
     sys.exit()
